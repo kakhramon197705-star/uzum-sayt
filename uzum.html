@@ -3,118 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gullar uchun o‘g‘it qo‘llanmasi</title>
-
+<title>Gullar uchun o'g'it qo'llanmasi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #e8f5e9, #ffffff);
-    color: #333;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-}
+  :root {
+    --green-dark: #1a3d2b;
+    --green-mid: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --cream: #faf8f2;
+    --warm-white: #fff9f0;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-muted: #888;
+    --gold: #c9a84c;
+    --gold-light: #f0dfa0;
+  }
 
-.header {
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--green-dark);
+    padding: 60px 24px 80px;
     text-align: center;
-    padding: 20px;
-}
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(82,183,136,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.1) 0%, transparent 50%);
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(82,183,136,0.5);
+    color: var(--green-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green-light);
+  }
+  .hero p {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    position: relative;
+  }
 
-.header h1 {
-    color: #2e7d32;
-    margin-bottom: 5px;
-}
+  /* Decorative leaf divider */
+  .divider {
+    text-align: center;
+    margin: -20px 0 0;
+    line-height: 0;
+  }
+  .divider svg { display: block; width: 100%; }
 
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    margin: 15px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+  /* Main content */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
 
-h2 {
-    color: #388e3c;
-}
+  /* Section label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .section-label .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green-light);
+    flex-shrink: 0;
+  }
+  .section-label span {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0ddd4;
+  }
 
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-.icon {
+  /* Cards */
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    border: 1px solid #ede9de;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(45,106,79,0.08);
+  }
+  .card-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--green-light), var(--green-mid));
+    border-radius: 20px 0 0 20px;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 22px;
-}
+    flex-shrink: 0;
+  }
+  .icon-green { background: var(--green-pale); }
+  .icon-gold { background: #fef3c7; }
+  .icon-blue { background: #dbeafe; }
+  .icon-red { background: #fee2e2; }
 
-.footer {
-    text-align: center;
-    margin-top: 30px;
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--green-dark);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* Items list */
+  .items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     font-size: 14px;
-    color: gray;
-}
-</style>
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .items li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .items li b {
+    color: var(--green-dark);
+    font-weight: 500;
+  }
 
+  /* Highlight pill */
+  .pill {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  /* Warning card */
+  .card-warning {
+    background: #fffbeb;
+    border-color: #fde68a;
+  }
+  .card-warning .card-accent {
+    background: linear-gradient(180deg, var(--gold), #e9a825);
+  }
+  .card-warning .card-title { color: #92400e; }
+  .card-warning .items li::before { background: var(--gold); }
+  .card-warning .items li b { color: #78350f; }
+
+  /* Schedule grid */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .schedule-item {
+    background: var(--green-pale);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+  }
+  .schedule-season {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .schedule-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .schedule-desc {
+    font-size: 11px;
+    color: var(--green-mid);
+    font-weight: 300;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid #ede9de;
+  }
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 24px 20px; }
+    .hero { padding: 48px 20px 70px; }
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-
-<div class="header">
-    <h1>🌿 Gullar uchun o‘g‘it</h1>
-    <p>O‘simliklar uchun foydalanish qo‘llanmasi</p>
+<div class="hero">
+  <div class="hero-tag">O'simliklar parvarishi</div>
+  <h1>Gullar uchun<br><em>o'g'it qo'llanmasi</em></h1>
+  <p>Sog'lom o'simlik — baxtli uy</p>
 </div>
 
-<div class="card">
-    <h2>🌱 Ildiz orqali oziqlantirish</h2>
-    <ul>
-        <li>10 litr suvga <b>2–5 g</b> kukunni eritib oling</li>
-        <li>Eritmani nam tuproqqa ildiz tagiga quying</li>
-        <li>Katta o‘simlik uchun <b>2–5 litr</b> yetarli</li>
-        <li>Kuchli xlorozda <b>8–10 g</b> gacha ishlatish mumkin</li>
-    </ul>
+<div class="divider">
+  <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:40px">
+    <path d="M0 0 Q360 40 720 20 Q1080 0 1440 30 L1440 0 Z" fill="#1a3d2b"/>
+  </svg>
 </div>
 
-<div class="card">
-    <h2>🍃 Barg orqali oziqlantirish</h2>
-    <ul>
-        <li>10 litr suvga <b>1–2 g</b> eritma tayyorlanadi</li>
-        <li>Ertalab yoki kechqurun purkash tavsiya etiladi</li>
-        <li>Eritmani saqlamang — darhol ishlating</li>
-    </ul>
-</div>
+<div class="content">
 
-<div class="card">
-    <h2>📅 Qachon qo‘llanadi</h2>
-    <ul>
-        <li>🌸 Bahorda — profilaktika yoki dastlabki belgida</li>
-        <li>☀️ Yozda — barglar sarg‘aysa</li>
-        <li>🔁 Har 10–14 kunda takrorlash mumkin</li>
-        <li>🌳 Daraxtlar — ildiz orqali samarali</li>
-        <li>🌼 Gullarda — barg orqali yaxshi natija</li>
-    </ul>
-</div>
+  <div class="section-label">
+    <div class="dot"></div>
+    <span>Oziqlantirish usullari</span>
+  </div>
 
-<div class="card">
-    <h2>⚠️ Foydali tavsiyalar</h2>
-    <ul>
-        <li>Ohakli eritmalar bilan aralashtirmang</li>
-        <li>Profilaktika uchun 1–2 marta yetarli</li>
-        <li>Kuchli xlorozda 3–4 marta ishlating</li>
-        <li>Ildiz va barg usulini navbatlab qo‘llang</li>
+  <!-- Ildiz -->
+  <div class="card">
+    <div class="card-accent"></div>
+    <div class="card-header">
+      <div class="card-icon icon-green">🌱</div>
+      <div>
+        <div class="card-title">Ildiz orqali oziqlantirish</div>
+        <div class="card-subtitle">Tuproq orqali — asosiy usul</div>
+      </div>
+    </div>
+    <ul class="items">
+      <li>10 litr suvga <b>2–5 g</b> kukunni eritib oling</li>
+      <li>Eritmani <b>nam tuproqqa</b> ildiz tagiga quying</li>
+      <li>Katta o'simlik uchun <b>2–5 litr</b> yetarli</li>
+      <li>Kuchli xlorozda <span class="pill">8–10 g</span> gacha ishlatish mumkin</li>
     </ul>
+  </div>
+
+  <!-- Barg -->
+  <div class="card">
+    <div class="card-accent"></div>
+    <div class="card-header">
+      <div class="card-icon icon-blue">🍃</div>
+      <div>
+        <div class="card-title">Barg orqali oziqlantirish</div>
+        <div class="card-subtitle">Purkash — tez natija uchun</div>
+      </div>
+    </div>
+    <ul class="items">
+      <li>10 litr suvga <b>1–2 g</b> eritma tayyorlanadi</li>
+      <li><b>Ertalab yoki kechqurun</b> purkash tavsiya etiladi</li>
+      <li>Eritmani saqlamang — <b>darhol ishlating</b></li>
+    </ul>
+  </div>
+
+  <div class="section-label" style="margin-top: 40px;">
+    <div class="dot"></div>
+    <span>Qo'llash vaqti</span>
+  </div>
+
+  <!-- Jadval -->
+  <div class="card">
+    <div class="card-accent"></div>
+    <div class="card-header">
+      <div class="card-icon icon-green">📅</div>
+      <div>
+        <div class="card-title">Qachon qo'llanadi</div>
+        <div class="card-subtitle">Mavsum va sharoitga qarab</div>
+      </div>
+    </div>
+    <div class="schedule-grid">
+      <div class="schedule-item">
+        <div class="schedule-season">🌸</div>
+        <div class="schedule-name">Bahor</div>
+        <div class="schedule-desc">Profilaktika yoki dastlabki belgi</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-season">☀️</div>
+        <div class="schedule-name">Yoz</div>
+        <div class="schedule-desc">Barglar sarg'aysa</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-season">🌳</div>
+        <div class="schedule-name">Daraxtlar</div>
+        <div class="schedule-desc">Ildiz orqali samarali</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-season">🌼</div>
+        <div class="schedule-name">Gullar</div>
+        <div class="schedule-desc">Barg orqali yaxshi natija</div>
+      </div>
+    </div>
+    <ul class="items" style="margin-top: 20px;">
+      <li>Har <b>10–14 kunda</b> takrorlash mumkin</li>
+    </ul>
+  </div>
+
+  <div class="section-label" style="margin-top: 40px;">
+    <div class="dot"></div>
+    <span>Muhim eslatmalar</span>
+  </div>
+
+  <!-- Warning -->
+  <div class="card card-warning">
+    <div class="card-accent"></div>
+    <div class="card-header">
+      <div class="card-icon icon-gold">⚠️</div>
+      <div>
+        <div class="card-title">Foydali tavsiyalar</div>
+        <div class="card-subtitle">E'tibor bering</div>
+      </div>
+    </div>
+    <ul class="items">
+      <li><b>Ohakli eritmalar</b> bilan aralashtirmang</li>
+      <li>Profilaktika uchun <b>1–2 marta</b> yetarli</li>
+      <li>Kuchli xlorozda <b>3–4 marta</b> ishlating</li>
+      <li>Ildiz va barg usulini <b>navbatlab</b> qo'llang</li>
+    </ul>
+  </div>
+
 </div>
 
 <div class="footer">
-    © 2026 Sizning brendingiz
-</div>
-
+  <div class="footer-brand">🌿 O'simliklar parvarishi</div>
+  <div class="footer-copy">© 2026 Sizning brendingiz</div>
 </div>
 
 </body>
